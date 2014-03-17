@@ -2,7 +2,7 @@
 var expect = require('chai').expect;
 // var sinon = require('sinon');
 var supertest = require('supertest');
-var api = supertest(require('../../index'));
+var api = supertest(require('../../app'));
 
 describe('GET /stores', function() {
 

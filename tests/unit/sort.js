@@ -2,7 +2,7 @@
 var expect = require('chai').expect;
 // var sinon = require('sinon');
 // var supertest = require('supertest');
-// var app = require('../../index');
+// var app = require('../../app');
 // var api = supertest(app);
 
 // Source for test
