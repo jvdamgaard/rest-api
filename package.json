@@ -7,6 +7,9 @@
         "start": "node app.js",
         "test": "mocha tests --recursive -R spec"
     },
+    "engines": {
+        "node": "0.10.x"
+    },
     "author": "",
     "license": "MIT",
     "dependencies": {
