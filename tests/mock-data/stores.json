@@ -1,0 +1,397 @@
+[{
+    "id": "1",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "2",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "3",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "4",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "5",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "6",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "7",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "8",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "9",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "10",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "11",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "12",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "13",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "14",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "15",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "16",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "17",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "18",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "19",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "20",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "21",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "22",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "23",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "24",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "25",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "26",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "27",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "28",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "29",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "30",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "31",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "32",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "33",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "34",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "35",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "36",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "37",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "38",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "39",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "40",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "41",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "42",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "43",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "44",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "45",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "46",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "47",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "48",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "49",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "50",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "51",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "52",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "53",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "54",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "55",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "56",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "57",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "58",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "59",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "60",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "61",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "62",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "63",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "64",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "65",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "66",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "67",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "68",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "69",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "70",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "71",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "72",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "73",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "74",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "75",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "76",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "77",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "78",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "79",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "80",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "81",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "82",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "83",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "84",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "85",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "86",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "87",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "88",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "89",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "90",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "91",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "92",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "93",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "94",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "95",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "96",
+    "name": "Store 3",
+    "postal": 8240
+}, {
+    "id": "97",
+    "name": "Store 1",
+    "postal": 8000
+}, {
+    "id": "98",
+    "name": "Store 2",
+    "postal": 8230
+}, {
+    "id": "99",
+    "name": "Store 3",
+    "postal": 8240
+}]
