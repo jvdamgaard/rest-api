@@ -5,40 +5,23 @@
 
 console.log('Starting test...');
 
-// Dependencies
-var lazy = require('lazy.js');
+// Test data
 var stores = require('./tests/mock-data/stores.json');
 
-// Prepare payload transform with lazy.js
-var prepare = function(req, res, next) {
-    req.payloadIsArray = Array.isArray(req.payload);
-    req.payload = lazy(req.payload);
-    next();
-};
-
+// Sequence
+var lazyChain = require('./utils/lazy-chain');
 var filter = require('./utils/filter');
 var sort = require('./utils/sort');
 var paginate = require('./utils/pagination');
 var limitFields = require('./utils/limit-fields');
 
-var transform = function(req, res, next) {
-    if (req.payloadIsArray) {
-        req.payload = req.payload.toArray();
-    } else {
-        req.payload = req.payload.toObject();
-    }
-    next();
-};
-
 // Sequence corrosponding to the sequence in the API
-var sequence = [prepare, filter, sort, paginate, limitFields, transform];
+var sequence = [lazyChain.start, filter, sort, paginate, limitFields, lazyChain.end];
 
 /**
  * Make one complete cicle of the sequence (simulation a request)
- *
  * @param     {Function}    done     callback when finished
  * @param     {Object}      query    Queries in url
- *
  * @return    {void}
  */
 var newSequence = function(done, query) {
@@ -48,7 +31,7 @@ var newSequence = function(done, query) {
         get: function() {
             return '';
         },
-        url: 'http://localhost:3000/stores'
+        url: 'http://localhost:3000/v1/stores'
     };
     var res = {
         links: function() {}
@@ -66,10 +49,8 @@ var newSequence = function(done, query) {
 
 /**
  * Start performance test
- *
  * @param     {Number}    seconds    For how long to run the test
  * @param     {Object}    query      Queries in the url
- *
  * @return    {void}
  */
 var perform = function(seconds, query) {
@@ -78,7 +59,7 @@ var perform = function(seconds, query) {
     var iterations = 0;
     var lastPercentage = 0;
     var done = function() {
-        console.log(iterations + ' times in ' + seconds + ' seconds (' + (Math.round(iterations / seconds * 100) / 100) + '/s');
+        console.log(iterations + ' times in ' + seconds + ' seconds (' + (Math.round(iterations / seconds * 100) / 100) + '/s)');
         console.log();
     };
     var loop = function() {
@@ -113,7 +94,7 @@ var perform = function(seconds, query) {
 // Start performance test
 perform(10, {
     sort: 'postal',
-    per_page: '100',
-    // postal: '8000',
+    perpage: '100',
+    postal: '8000',
     fields: 'postal'
 });

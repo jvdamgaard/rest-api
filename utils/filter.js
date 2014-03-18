@@ -1,8 +1,10 @@
 module.exports = function(req, res, next) {
+    var filters;
+    var i;
+
     if (!req.payloadIsArray) {
         return next();
     }
-    var filters, i;
     req.payload = req.payload.filter(function(item) {
 
         // Find filters
@@ -19,7 +21,7 @@ module.exports = function(req, res, next) {
         // Find non-matching items
         for (i = filters.length - 1; i >= 0; i--) {
             var filter = filters[i];
-            if (item[filter] != req.query[filter]) {
+            if (item[filter].toString() !== req.query[filter]) {
                 inFilter = false;
                 break;
             }

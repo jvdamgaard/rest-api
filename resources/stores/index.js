@@ -6,13 +6,13 @@ var lazy = require('lazy.js');
 
 module.exports = function(app) {
 
-    app.get('/stores', function(req, res, next) {
+    app.get('/v1/stores', function(req, res, next) {
         req.status = 200;
         req.payload = stores;
         next();
     });
 
-    app.get('/stores/:id', function(req, res, next) {
+    app.get('/v1/stores/:id', function(req, res, next) {
         var store = lazy(stores).findWhere({
             id: req.params.id
         });

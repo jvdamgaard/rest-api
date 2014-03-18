@@ -7,7 +7,7 @@ var api = supertest(require('../../app'));
 describe('GET /stores', function() {
 
     it('returns array of stores as JSON', function(done) {
-        api.get('/stores')
+        api.get('/v1/stores')
             .expect(200)
             .expect('Content-Type', /json/)
             .end(function(err, res) {

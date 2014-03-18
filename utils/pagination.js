@@ -20,9 +20,9 @@ var generateLinkHeader = function(req, currentPage, lastPage, perPage) {
     ].join('');
 
     // Queries excl. page
-    var queries = ['per_page=' + perPage];
+    var queries = ['perpage=' + perPage];
     for (var queryName in req.query) {
-        if (queryName !== 'page' && queryName !== 'per_page') {
+        if (queryName !== 'page' && queryName !== 'perpage') {
             queries.push(queryName + '=' + req.query[queryName]);
         }
     }
@@ -61,7 +61,7 @@ module.exports = function(req, res, next) {
         return next();
     }
 
-    var perPage = parseInt(req.query.per_page, 10) || DEFAULT_PER_PAGE;
+    var perPage = parseInt(req.query.perpage, 10) || DEFAULT_PER_PAGE;
     if (perPage < 1) {
         perPage = 1;
     } else if (perPage > MAX_PER_PAGE) {
