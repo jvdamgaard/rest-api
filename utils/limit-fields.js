@@ -1,5 +1,5 @@
 module.exports = function(req, res, next) {
-    if (!req.query.fields) {
+    if (!req.query.fields || !req.config || !req.config.response || !req.config.response.limitFields) {
         return next();
     }
     var fields = req.query.fields.split(',');

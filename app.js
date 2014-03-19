@@ -7,12 +7,14 @@ var bodyParser = require('body-parser');
 var runtime = require('./utils/runtime');
 var cors = require('./utils/cors');
 var exposeHeaders = require('./utils/expose-headers');
+var config = require('./utils/config.js');
 var authentication = require('./utils/authentication');
 var authorization = require('./utils/authorization');
 var rateLimit = require('./utils/rate-limiting');
 var caching = require('./utils/caching');
 var totalCount = require('./utils/total-count');
 var lazyChain = require('./utils/lazy-chain');
+var resourceMethods = require('./utils/resource-methods');
 var filter = require('./utils/filter');
 var sort = require('./utils/sort');
 var pagination = require('./utils/pagination');
@@ -30,17 +32,19 @@ app.use(compression()); // Use gzip compression
 app.use(bodyParser()); // Parse queries and body
 app.use(cors); // Allow CORS
 app.use(exposeHeaders); // Add headers to response for use with AJAX calls
+app.all('/v1/:resource*', config);
 app.use(authentication); // Check for authentication
-app.all('/v1/:resource/*', authorization); // Check if user has authorization to given resource and method
+app.all('/v1/:resource*', authorization); // Check if user has authorization to given resource and method
 app.use(rateLimit); // Rate limit user
 app.get('*', caching.getFromCache); // Check if request is cached
 
-// Handle routing and data retrieval
+// Handle routing and data retrieval for resources
 require('./resources/stores')(app);
 
 // Handle response
 app.get('*', totalCount); // Total count in response header
 app.get('*', lazyChain.start); // Prepare payload transform with lazy.js
+app.get('*', resourceMethods); // Apply filters
 app.get('*', filter); // Apply filters
 app.get('*', sort); // Sort based on `sort` query
 app.get('*', pagination); // Paginate result
@@ -53,5 +57,6 @@ app.use(runtime.end); // Add runtime to header
 // Send response to client
 app.use(response.send);
 
-console.log('App listening on port 3000');
-app.listen(3000);
+var port = process.env.port || '3000';
+console.log('App listening on port ' + port);
+app.listen(port);

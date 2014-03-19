@@ -1,5 +1,5 @@
 module.exports = function(req, res, next) {
-    if (!req.query.sort || !req.payloadIsArray) {
+    if (!req.query.sort || !req.payloadIsArray || !req.config || !req.config.response || !req.config.response.sort) {
         return next();
     }
     var sort = req.query.sort;

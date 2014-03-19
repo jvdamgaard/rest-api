@@ -57,7 +57,7 @@ var generateLinkHeader = function(req, currentPage, lastPage, perPage) {
 };
 
 module.exports = function(req, res, next) {
-    if (!req.payloadIsArray) {
+    if (!req.payloadIsArray || !req.config || !req.config.response || !req.config.response.pagination) {
         return next();
     }
 
