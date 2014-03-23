@@ -1,5 +1,6 @@
 // Test framework dependencies
 var expect = require('chai').expect;
+var lazy = require('lazy.js');
 // var sinon = require('sinon');
 // var supertest = require('supertest');
 // var app = require('../../app');
@@ -14,13 +15,21 @@ var stores = require('../mock/data/stores.json');
 describe('utils/sort', function() {
     it('should sort the payload based on a `sort` querystring', function(done) {
         var req = {
-            payload: stores,
+            payload: lazy(stores),
+            payloadIsArray: true,
             query: {
                 sort: 'id'
+            },
+            config: {
+                response: {
+                    sort: true
+                }
             }
         };
         sort(req, null, function() {
-            expect(req.payload).be.an('array');
+            expect(req.payload).not.to.be.empty;
+            var sorted = req.payload.toArray();
+            expect(sorted).to.be.an('array');
             done();
         });
     });

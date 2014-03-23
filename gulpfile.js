@@ -18,7 +18,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('prepareIstanbul', function() {
-    return gulp.src(['resources/**/*.js', 'app.js'])
+    return gulp.src(['resources/**/*.js', 'app.js', 'utils/**/*.js'])
         .pipe(istanbul()); // Covering files
 });
 
@@ -34,8 +34,11 @@ gulp.task('tests', function() {
         .pipe(istanbul.writeReports()); // Creating the reports after tests runned
 });
 
-// Push test coverage to COveralls.io
+// Push test coverage to Coveralls.io
 gulp.task('coveralls', function() {
+    if (process.env.NODE_ENV !== 'build') {
+        return gutil.log('Not on build server: No push to coveralls.io');
+    }
     return gulp.src('coverage/**/lcov.info')
         .pipe(coveralls());
 });
