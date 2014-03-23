@@ -1,5 +1,5 @@
 // Mock data
-var stores = require('./mock-data.json');
+var stores = require('../../test/mock/data/stores.json');
 
 // Dependencies
 var lazy = require('lazy.js');

@@ -23,7 +23,7 @@ var exposeHeaders = require('./utils/expose-headers');
 var response = require('./utils/response');
 
 // Create express server app
-var app = module.exports = express();
+var app = express();
 app.set('json spaces', 2); // Pretty print json output
 
 // Handle request
@@ -59,4 +59,5 @@ app.use(response.send);
 
 var port = process.env.port || '3000';
 console.log('App listening on port ' + port);
-app.listen(port);
+
+module.exports = app.listen(port);

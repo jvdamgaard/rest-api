@@ -9,7 +9,7 @@ var expect = require('chai').expect;
 var sort = require('../../utils/sort');
 
 // Mock data
-var stores = require('../mock-data/stores');
+var stores = require('../mock/data/stores.json');
 
 describe('utils/sort', function() {
     it('should sort the payload based on a `sort` querystring', function(done) {
@@ -20,7 +20,7 @@ describe('utils/sort', function() {
             }
         };
         sort(req, null, function() {
-            expect(req.payload).be.an.array;
+            expect(req.payload).be.an('array');
             done();
         });
     });
