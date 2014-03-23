@@ -17,7 +17,7 @@ module.exports = function(app) {
             id: req.params.id
         });
         if (!store) {
-            res.status(400).json({
+            return res.status(400).json({
                 error: 'Invalid ID'
             });
         }
