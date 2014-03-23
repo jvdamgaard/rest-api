@@ -47,7 +47,7 @@ describe('GET /stores:id', function() {
 
     it('should return 400 given a invalid id', function(done) {
         api.get('/v1/stores/not-a-valid-id')
-            .expect(400)
+            .expect(404)
             .expect('Content-Type', /json/)
             .end(function(err, res) {
                 if (err) {
