@@ -1,19 +1,23 @@
 // Dependencies
 var lazy = require('lazy.js');
+var isActive = require('./config').isActive;
 
 // Constants
 var DEFAULT_PER_PAGE = 30;
 var MAX_PER_PAGE = 100;
 
+var generateLink = function(url, queries, page) {
+    var query = lazy(queries).union([
+        'page=' + page
+    ]).join('&');
+    return encodeURI(url + '?' + query);
+};
+
 var generateLinkHeader = function(req, currentPage, lastPage, perPage) {
     var links = {};
 
-    // Navigate to page
-    var prevPage = currentPage - 1;
-    var nextPage = currentPage + 1;
-
     // Full URL to current resource excl. queries
-    var fullUrl = [
+    var url = [
         req.protocol + '://', // protocol
         req.get('host'), // domain
         req.path, // folder
@@ -28,36 +32,26 @@ var generateLinkHeader = function(req, currentPage, lastPage, perPage) {
     }
 
     // First page
-    var firstQuery = lazy(queries).union(['page=1']).join('&');
-    links.first = encodeURI(fullUrl + '?' + firstQuery);
-
-    // Prev page
-    if (prevPage > 0) {
-        var prevQuery = lazy(queries).union([
-            'page=' + prevPage
-        ]).join('&');
-        links.prev = encodeURI(fullUrl + '?' + prevQuery);
-    }
+    links.first = generateLink(url, queries, 1);
 
     // Next page
-    if (nextPage <= lastPage) {
-        var nextQuery = lazy(queries).union([
-            'page=' + nextPage
-        ]).join('&');
-        links.next = encodeURI(fullUrl + '?' + nextQuery);
+    if (currentPage < lastPage) {
+        links.next = generateLink(url, queries, currentPage + 1);
+    }
+
+    // Prev page
+    if (currentPage > 1) {
+        links.prev = generateLink(url, queries, currentPage - 1);
     }
 
     // Last page
-    var lastQuery = lazy(queries).union([
-        'page=' + lastPage
-    ]).join('&');
-    links.last = encodeURI(fullUrl + '?' + lastQuery);
+    links.last = generateLink(url, queries, lastPage);
 
     return links;
 };
 
 module.exports = function(req, res, next) {
-    if (!req.payloadIsArray || !req.config || !req.config.response || !req.config.response.pagination) {
+    if (!isActive(req, 'pagination')) {
         return next();
     }
 
@@ -73,8 +67,7 @@ module.exports = function(req, res, next) {
     var page = parseInt(req.query.page, 10) || 1;
     if (page < 1) {
         page = 1;
-    }
-    if (page > lastPage) {
+    } else if (page > lastPage) {
         page = lastPage;
     }
 

@@ -1,8 +1,11 @@
+// Dependencies
+var isActive = require('./config').isActive;
+
 module.exports = function(req, res, next) {
     var filters;
     var i;
 
-    if (!req.payloadIsArray || !req.config || !req.config.response || !req.config.response.filter) {
+    if (!isActive(req, 'filter')) {
         return next();
     }
     req.payload = req.payload.filter(function(item) {

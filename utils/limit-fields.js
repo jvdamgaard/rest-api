@@ -1,5 +1,11 @@
+// Dependencies
+var isActive = require('./config').isActive;
+
 module.exports = function(req, res, next) {
-    if (!req.query.fields || !req.config || !req.config.response || !req.config.response.limitFields) {
+    if (!isActive(req, 'limitFields')) {
+        return next();
+    }
+    if (!req.query.fields) {
         return next();
     }
     var fields = req.query.fields.split(',');

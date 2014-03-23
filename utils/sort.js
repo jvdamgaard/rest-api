@@ -1,8 +1,14 @@
+// Dependencies
+var isActive = require('./config').isActive;
+
 module.exports = function(req, res, next) {
-    if (!req.query.sort || !req.payloadIsArray || !req.config || !req.config.response || !req.config.response.sort) {
+    if (!isActive(req, 'sort')) {
         return next();
     }
     var sort = req.query.sort;
+    if (!sort) {
+        return next();
+    }
     var desc = req.query.sort.indexOf('-') === 0;
     if (desc) {
         sort = sort.replace('-', '');
