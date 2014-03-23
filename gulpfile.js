@@ -36,7 +36,7 @@ gulp.task('tests', function() {
 
 // Push test coverage to COveralls.io
 gulp.task('coveralls', function() {
-    return gulp.src('test/coverage/lcov.info')
+    return gulp.src('coverage/**/lcov.info')
         .pipe(coveralls());
 });
 
