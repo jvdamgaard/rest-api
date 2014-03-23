@@ -11,7 +11,7 @@ describe('GET /stores', function() {
         app.close();
     });
 
-    it('returns array of stores as JSON', function(done) {
+    it('should return an array of stores', function(done) {
         api.get('/v1/stores')
             .expect(200)
             .expect('Content-Type', /json/)
@@ -32,9 +32,22 @@ describe('GET /stores:id', function() {
         app.close();
     });
 
-    it('returns object with id', function(done) {
+    it('should return object given an id', function(done) {
         api.get('/v1/stores/530758bbbe150fc51e6cfbda')
             .expect(200)
+            .expect('Content-Type', /json/)
+            .end(function(err, res) {
+                if (err) {
+                    return done(err);
+                }
+                expect(res.body).to.be.an('object');
+                done();
+            });
+    });
+
+    it('should return 400 given a invalid id', function(done) {
+        api.get('/v1/stores/not-a-valid-id')
+            .expect(400)
             .expect('Content-Type', /json/)
             .end(function(err, res) {
                 if (err) {
