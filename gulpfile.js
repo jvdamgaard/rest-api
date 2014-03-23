@@ -7,6 +7,7 @@ var jscs = require('gulp-jscs');
 var mocha = require('gulp-mocha');
 var istanbul = require('gulp-istanbul');
 var runSequence = require('run-sequence');
+var coveralls = require('gulp-coveralls');
 
 // Static syntax analysis with jshint and jscs
 gulp.task('lint', function() {
@@ -31,6 +32,12 @@ gulp.task('tests', function() {
             reporter: 'spec'
         }))
         .pipe(istanbul.writeReports()); // Creating the reports after tests runned
+});
+
+// Push test coverage to COveralls.io
+gulp.task('coveralls', function() {
+    return gulp.src('test/coverage/lcov.info')
+        .pipe(coveralls());
 });
 
 // Test Driven: Watch for changes to js files and rerun tests
@@ -71,6 +78,7 @@ gulp.task('test', function(done) {
         'lint',
         'prepareIstanbul',
         'tests',
+        'coveralls',
         done
     );
 });
