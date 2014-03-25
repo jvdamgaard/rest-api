@@ -11,14 +11,12 @@
     "mootools": false,
     "dojo": false,
     "predef": [
-        "Modernizr",
         "describe",
         "it",
         "before",
         "beforeEach",
         "after",
-        "afterEach",
-        "sinon"
+        "afterEach"
     ],
     "debug": false,
     "devel": false,

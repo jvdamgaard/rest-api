@@ -1,9 +1,17 @@
+/**
+ * Tell the code coverage tool Istanbul which files to generate a code coverage
+ * report of.
+ */
+
 // Dependencies
 var gulp = require('gulp');
 var istanbul = require('gulp-istanbul');
 
-// Prepare files to test for code coverage
+/**
+ * Export Gulp job
+ * @return        {object}        Gulp stream
+ */
 module.exports = function() {
-    return gulp.src(['v1/**/*.js', 'app.js'])
+    return gulp.src(['v1/**/*.js', 'utils/**/*.js', 'app.js'])
         .pipe(istanbul()); // Covering files
 };

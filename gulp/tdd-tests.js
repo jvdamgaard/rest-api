@@ -1,10 +1,18 @@
+/**
+ * Run tests whenaver a change is detected.
+ * Used for test-driven development
+ */
+
 // Dependencies
 var args = require('yargs').argv;
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var mocha = require('gulp-mocha');
 
-// Test Driven: Watch for changes to js files and rerun tests
+/**
+ * Export Gulp job
+ * @return        {object}        Gulp stream
+ */
 module.exports = function() {
 
     // Tests to be run: defaults to ./tests/**/*.js
@@ -27,13 +35,12 @@ module.exports = function() {
         options.grep = args.grep;
     }
 
-    gulp.src(src)
-        .pipe(mocha(options))
-        .on('error', function() {});
-
-    gulp.watch(['./**/*.js', '!./node_modules/**', '!./coverage/**'], function() {
+    var runTests = function() {
         gulp.src(src)
             .pipe(mocha(options))
             .on('error', function() {});
-    });
+    };
+
+    gulp.watch(['./**/*.js', '!./node_modules/**', '!./coverage/**'], runTests);
+    runTests();
 };

@@ -1,3 +1,19 @@
+/**
+ * Add CORS to the server
+ *
+ * ## Example of use:
+ *
+ *     var app = express();
+ *     app.use(cors);
+ */
+
+/**
+ * Express middleware
+ * @param         {object}          req         Express request
+ * @param         {object}          res         Express response
+ * @param         {Function}        next        callback
+ * @return        {void}
+ */
 module.exports = function(req, res, next) {
     // TODO: set allow-origin based on user
     res.setHeader('Access-Control-Allow-Origin', '*');

@@ -1,21 +1,59 @@
-var transformOutput = require('./transform-output');
+/**
+ * Break express chain with an error.
+ *
+ * ## Example
+ *
+ *     errorHandler(req, res, {
+ *         code: '1234',
+ *         developerMessage: 'This is the message to a developer of how to fix the problem',
+ *         userMessage: 'This is a kind message to the end user'
+ *     });
+ */
 
-var errorCodeLookUp = {
-    '-1': {
-        moreInfo: 'http://developer.dansksupermarked.dk/',
-        statusCode: 404
+// Dependencies
+var lazy = require('lazy.js');
+var transformOutput = require('./transform-output');
+var errorCodes = require('../data/error-codes'); // TODO: Replace with a service
+
+/**
+ * Find info for error code
+ * @param         {string|integer}    code        Error code
+ * @return        {object}                        Full info for error code
+ */
+var errorCodeLookUp = function(code) {
+    var errorData = lazy(errorCodes).findWhere({
+        code: code
+    });
+    if (errorData) {
+        return errorData;
     }
+
+    // If no error with given code exists, then return standard response
+    return lazy(errorCodes).findWhere({
+        code: '-1'
+    });
 };
 
+/**
+ * Receive error, transform to valid error and send to response
+ * @param         {object}        req                      Express request
+ * @param         {object}        res                      Express response
+ * @param         {object}        error                    Description of the error
+ * @param         {string}        error.code               Code corresponding to the error
+ * @param         {[string]}      error.developerMessage   Description of the error to the developer
+ * @param         {[string]}      error.userMessage        Description of the error to the user
+ * @return        {void}
+ */
 module.exports = function(req, res, error) {
     error = error || {};
-    error.code = '' + error.code || '-1';
-    error.developerMessage = error.developerMessage || 'No descript for this error. Please send a mail to teamfotexnetto@gmail.com';
-    error.userMessage = error.userMessage || 'The Dansk Supermarked API unexpected produced an error. Please try again.';
-    error.moreInfo = errorCodeLookUp[error.code].moreInfo || errorCodeLookUp['-1'].moreInfo;
-
+    var errorData = errorCodeLookUp(error.code);
+    error.code = errorData.code;
+    error.developerMessage = error.developerMessage || errorData.developerMessage;
+    error.userMessage = error.userMessage || errorData.userMessage;
+    error.moreInfo = errorData.moreInfo;
     req.payload = error;
-    req.status = errorCodeLookUp[error.code].statusCode || errorCodeLookUp['-1'].statusCode;
+
+    req.status = errorData.statusCode;
 
     transformOutput(req, res);
 };

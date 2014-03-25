@@ -1,8 +1,13 @@
+/**
+ * Stores router.
+ */
+
 // Dependencies
 var express = require('express');
 var lazy = require('lazy.js');
 var error = require('../utils/error-handler');
 
+// Express router
 var stores = module.exports = express.Router();
 
 // Mock data

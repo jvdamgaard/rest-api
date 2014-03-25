@@ -1,3 +1,12 @@
+/**
+ * Redirects to error if nothing has been found for given url.
+ *
+ * ## Example
+ *
+ *     var app = require('express');
+ *     app.use(notFound);
+ */
+
 // Dependencies
 var errorHandler = require('./error-handler');
 

@@ -1,10 +1,6 @@
 // Dependencies
-var isActive = require('./config').isActive;
 
 module.exports = function(req, res, next) {
-    if (!isActive(req, 'limitFields')) {
-        return next();
-    }
     if (!req.query.fields) {
         return next();
     }

@@ -1,10 +1,11 @@
 // Dependencies
-var isActive = require('./config').isActive;
 
 module.exports = function(req, res, next) {
-    if (!isActive(req, 'sort')) {
+
+    if (!req.payloadIsArray) {
         return next();
     }
+
     var sort = req.query.sort;
     if (!sort) {
         return next();

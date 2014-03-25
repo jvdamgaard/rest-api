@@ -1,60 +1,60 @@
-// Test framework dependencies
+/**
+ * Tests for the stores router
+ */
+
+// Dependencies
 var expect = require('chai').expect;
-// var sinon = require('sinon');
 var supertest = require('supertest');
-var app = require('../../app');
-var api = supertest(app);
 
-describe('GET /stores', function() {
+describe('Stores', function() {
 
-    after(function() {
-        app.close();
-    });
-
-    it('should return an array of stores', function(done) {
-        api.get('/v1/stores')
-            .expect(200)
-            .expect('Content-Type', /json/)
-            .end(function(err, res) {
-                if (err) {
-                    return done(err);
-                }
-                expect(res.body).to.be.an('array');
-                expect(res.body).to.have.length(30);
-                done();
-            });
-    });
-});
-
-describe('GET /stores:id', function() {
+    var server = require('../../app');
+    var api = supertest(server);
 
     after(function() {
-        app.close();
+        server.close();
     });
 
-    it('should return object given an id', function(done) {
-        api.get('/v1/stores/530758bbbe150fc51e6cfbda')
-            .expect(200)
-            .expect('Content-Type', /json/)
-            .end(function(err, res) {
+    describe('GET /v1/stores', function() {
+
+        it('should respond with an array of stores as JSON', function(done) {
+            api.get('/v1/stores').end(function(err, res) {
                 if (err) {
                     return done(err);
                 }
-                expect(res.body).to.be.an('object');
+                expect(res.statusCode).to.equal(200);
+                expect(res.headers).to.have.property('content-type').and.include('json');
+                expect(res.body).to.be.an('array').and.not.empty;
                 done();
             });
+        });
     });
 
-    it('should return 400 given a invalid id', function(done) {
-        api.get('/v1/stores/not-a-valid-id')
-            .expect(404)
-            .expect('Content-Type', /json/)
-            .end(function(err, res) {
+    describe('GET /v1/stores/:id', function() {
+
+        it('should respond with a stores object as JSON', function(done) {
+            api.get('/v1/stores/530758bbbe150fc51e6cfbda').end(function(err, res) {
                 if (err) {
                     return done(err);
                 }
-                expect(res.body).to.be.an('object');
+                expect(res.statusCode).to.equal(200);
+                expect(res.headers).to.have.property('content-type').and.include('json');
+                expect(res.body).to.be.an('object').and.have.property('id');
                 done();
             });
+        });
+
+        it('should respond with an error given an invalid id', function(done) {
+            api.get('/v1/stores/not-a-valid-id').end(function(err, res) {
+                if (err) {
+                    return done(err);
+                }
+                expect(res.statusCode).to.equal(404);
+                expect(res.headers).to.have.property('content-type').and.include('json');
+                expect(res.body).to.be.an('object').and.not.empty;
+                done();
+            });
+        });
     });
+
 });

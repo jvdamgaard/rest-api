@@ -1,13 +1,13 @@
 // Dependencies
-var isActive = require('./config').isActive;
 
 module.exports = function(req, res, next) {
     var filters;
     var i;
 
-    if (!isActive(req, 'filter')) {
+    if (!req.payloadIsArray) {
         return next();
     }
+
     req.payload = req.payload.filter(function(item) {
 
         // Find filters

@@ -4,8 +4,8 @@
     "description": "",
     "main": "app.js",
     "scripts": {
-        "start": "node app.js",
-        "test": "gulp test"
+        "test": "gulp test",
+        "start": "node app.js"
     },
     "repository": {
         "type": "git",
@@ -14,14 +14,19 @@
     "engines": {
         "node": "0.10.x"
     },
+    "keywords": [
+        "api",
+        "rest",
+        "restfull"
+    ],
     "author": "Jakob Viskum Damgaard <jakob.viskum.damgaard@gmail.com>",
     "license": "MIT",
     "dependencies": {
-        "express": "^4.0.0",
         "body-parser": "1.0.1",
-        "request": "2.34.0",
+        "compression": "1.0.1",
+        "express": "^4.0.0",
         "lazy.js": "0.3.2",
-        "compression": "1.0.1"
+        "request": "2.34.0"
     },
     "devDependencies": {
         "chai": "1.9.1",

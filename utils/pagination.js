@@ -1,6 +1,5 @@
 // Dependencies
 var lazy = require('lazy.js');
-var isActive = require('./config').isActive;
 
 // Constants
 var DEFAULT_PER_PAGE = 30;
@@ -51,7 +50,8 @@ var generateLinkHeader = function(req, currentPage, lastPage, perPage) {
 };
 
 module.exports = function(req, res, next) {
-    if (!isActive(req, 'pagination')) {
+
+    if (!req.payloadIsArray) {
         return next();
     }
 
