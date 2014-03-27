@@ -32,7 +32,7 @@ describe('Runtime', function() {
                 if (err) {
                     return done(err);
                 }
-                expect(res.headers).to.have.property('x-runtime').and.be.closeTo(3, 1);
+                expect(res.headers).to.have.property('x-runtime').and.be.at.least(3);
                 done();
             });
         });
