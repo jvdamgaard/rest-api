@@ -1,0 +1,16 @@
+{
+    "authentication": false,
+    "authorization": false,
+    "caching": false,
+    "cors": true,
+    "expose-header": true,
+    "filter": true,
+    "is-ssl": false,
+    "limit-fields": false,
+    "pagination": false,
+    "rate-limit": false,
+    "resouce-methods": false,
+    "runtime": true,
+    "sort": false,
+    "total-count": true
+}

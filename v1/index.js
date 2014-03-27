@@ -10,6 +10,7 @@
 
 // Dependencies
 var express = require('express');
+var feature = require('../utils/feature-flip');
 var isSSL = require('../utils/is-ssl.js');
 var runtime = require('../utils/runtime');
 var cors = require('../utils/cors');
@@ -33,8 +34,12 @@ var limitFields = require('../utils/limit-fields');
 var router = module.exports = express.Router();
 
 // Handle request
-router.use(isSSL); // Fail if the HTTPS protocol is not used
-router.use(runtime.start); // Start runtime timer
+if (feature('is-ssl').isEnabled) {
+    router.use(isSSL); // Fail if the HTTPS protocol is not used
+}
+if (feature('runtime').isEnabled) {
+    router.use(runtime.start); // Start runtime timer
+}
 router.use(cors); // Allow CORS
 router.use(exposeHeaders); // Add headers to response for use with AJAX calls
 router.all('/:resource*', authentication); // Check for authentication
@@ -55,6 +60,8 @@ router.get('/*', pagination); // Paginate result
 router.get('/*', limitFields); // Limit fields based on `limit` query
 router.get('/*', lazyChain.end); // Evaluate lazy.js chain
 router.get('/*', caching.saveToCache); // Save request cache
-router.use(runtime.end); // Set X-Runtime headers
+if (feature('runtime').isEnabled) {
+    router.use(runtime.end); // Set X-Runtime headers
+}
 router.use(notFound); // Check if any resource has been found for request
 router.use(transformOutput); // Transform payload and respond to client
